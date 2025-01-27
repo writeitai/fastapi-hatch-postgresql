@@ -1,0 +1,37 @@
+[project]
+name = "fastapi-hatch-postgresql"
+version = "0.1.0"
+description = "Minimal template for a FastAPI app with Hatch and PostgreSQL"
+readme = "README.md"
+authors = [
+    { name = "WriteIt.ai", email = "info@writeit.ai" }
+]
+requires-python = ">=3.12"
+dependencies = [
+  "alembic==1.12.0",
+  "asyncpg==0.28.0",
+  "fastapi==0.115.8",
+  "pydantic-settings==2.7.1",
+  "sqlalchemy[asyncio]==2.0.38",
+  "uvicorn[standard]==0.34.0",
+]
+
+[tool.hatch.envs.default]
+python="3.12"
+
+[tool.hatch.envs.default.scripts]
+runserver = "cd src && python main.py"
+makemigrations = "cd src && alembic revision --autogenerate"
+migrate = "cd src && alembic upgrade head"
+
+# Test environment
+[tool.hatch.envs.test]
+dependencies = [
+    "pytest-asyncio==0.21.2",
+    "pytest==8.3.4",
+    "pytest-mock==3.11.1",
+    "httpx==0.28.1",
+]
+
+[tool.hatch.envs.test.scripts]
+unit = "cd src && pytest"

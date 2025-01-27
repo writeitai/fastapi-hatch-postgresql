@@ -1,0 +1,1 @@
+from db.models.example_model import *  # noqa: F403
